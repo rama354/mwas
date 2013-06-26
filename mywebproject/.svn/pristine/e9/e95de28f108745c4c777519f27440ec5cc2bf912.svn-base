@@ -1,0 +1,50 @@
+/**
+ * 
+ */
+package com.mwas.spring.controllers;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+
+/**
+ * @author asus
+ *
+ */
+public class DataGridController extends MultiActionController {
+
+	/**
+	 * 
+	 */
+	private CommonsMultipartResolver multipartResolver;
+	
+	/**
+	 * @param multipartResolver the multipartResolver to set
+	 */
+	public void setMultipartResolver(CommonsMultipartResolver multipartResolver) {
+		this.multipartResolver = multipartResolver;
+	}
+
+	public DataGridController() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param delegate
+	 */
+	public DataGridController(Object delegate) {
+		super(delegate);
+		// TODO Auto-generated constructor stub
+	}
+	
+	public ModelAndView fileUpload1(HttpServletRequest arg0,
+										HttpServletResponse arg1) throws Exception
+	{
+		return null;
+		
+	}
+	
+}

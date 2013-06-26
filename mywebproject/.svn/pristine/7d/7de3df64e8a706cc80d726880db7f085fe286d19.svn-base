@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<import resource="MWAS-security.xml" />
+	<bean id="paramResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName" value="submit" />
+	</bean>
+	<!--  <bean id="multipartResolver"
+    	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000"/>
+	</bean>-->
+	<bean id="fileUploadController" class="com.mwas.spring.controllers.FileUploadController">
+    </bean>
+	<bean name="/home.htm" class="com.mwas.spring.controllers.LoginController">
+		<property name="authService" ref="authService" />
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+	<bean id="galleryController" class="com.mwas.spring.controllers.GalleryController">
+	</bean>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	<!--<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer"> 
+		<property name="definitions"> <list> <value>/WEB-INF/tiles-def.xml</value> 
+		</list> </property> </bean> -->
+</beans>

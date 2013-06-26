@@ -1,0 +1,6 @@
+function expandImage(link)
+{
+ 	var img=document.getElementById(link.href.value);	
+	document.getElementById("imagemodal").firstChild.src=img.src;
+	
+}

@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+.pageborder {
+	border: 2px solid;
+	border-radius: 25px;
+	-moz-border-radius: 25px;
+}
+
+.ridge {
+	border-top-width: 4px;
+	border-bottom-width: 4px;
+	border-top-style: double;
+	border-bottom-style: double;
+	border-top-color: #E1A60A;
+	border-bottom-color: #E1A60A;
+	padding: 8px 0px;
+}

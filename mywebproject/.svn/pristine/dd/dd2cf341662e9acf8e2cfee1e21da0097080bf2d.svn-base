@@ -1,0 +1,192 @@
+/**
+ * 
+ */
+package com.mwas.spring.controllers;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateException;
+
+
+import javax.security.auth.callback.CallbackHandler;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
+import org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver;
+
+import com.mwas.authentication.FMSession;
+import com.mwas.authentication.PageLoginCallBackHandler;
+import com.mwas.security.CertificateManagementFactory;
+import com.mwas.security.CertificateManager;
+import com.mwas.security.MWASKeyPairGenerator;
+import com.mwas.security.SecurityConstants;
+import com.mwas.spring.beans.authentication.AuthorizationService;
+
+/**
+ * @author asus
+ *
+ */
+@Controller
+@SessionAttributes({"FMSession"})
+public class LoginController {
+
+	/**
+	 * 
+	 */
+	private ParameterMethodNameResolver methodNameResolver;
+	
+	private AuthorizationService authService;
+	
+	//private FMSession usersession=null;   //Later use a proper UserSession object ( subject,principal )
+
+	private FMSession userSession=null;
+	private ModelAndView homepageMV = null;
+	private ModelAndView loginpageMV=null;
+	
+	public LoginController() 
+	{
+		homepageMV = new ModelAndView("datatable");
+		loginpageMV = new ModelAndView("/login/login");
+	}
+	
+	
+	public void setAuthService(AuthorizationService authService){
+		
+		this.authService=authService;
+	}
+	
+	
+	/**
+	 * @param delegate
+	 */
+	/*public LoginController(Object delegate) {
+		super(delegate);
+		// TODO Auto-generated constructor stub
+	}*/
+	@RequestMapping(value="/home.htm" , method= RequestMethod.GET,params="submit=signIn")
+	public ModelAndView signIn(HttpServletRequest arg0,
+			HttpServletResponse arg1) throws Exception 
+	{
+			// TODO Auto-generated method stub
+			ModelAndView modelAndView = null;
+			String user= arg0.getParameter("user");
+			String password=arg0.getParameter("password");
+			CallbackHandler cbh= new PageLoginCallBackHandler(user,password);
+			
+			if (authService.authorize(cbh))
+			{
+				//makeSecureConnection(arg0);
+				userSession = FMSession.getSessionInstance();
+				homepageMV.addObject("FMSession", userSession);
+				modelAndView = homepageMV;
+			}
+			
+			return modelAndView;
+		
+	 }
+	
+	@RequestMapping(value="/home.htm" , method= RequestMethod.GET,params="submit=forgetPassword")
+	public ModelAndView forgetPassword(HttpServletRequest arg0,
+			HttpServletResponse arg1) throws Exception
+	{
+		return null;
+		
+	}
+	
+	/// Put FMSession object in HTTPSession   ????????
+	@RequestMapping(value="/home.htm" , method=RequestMethod.GET,params="submit=home")
+	public ModelAndView home(HttpServletRequest arg0,
+			HttpServletResponse arg1) throws Exception
+	{
+		System.out.println("Enter home method");
+		ModelAndView modelAndView = null;
+		
+		if (userSession !=null && userSession.isSessionLogin())
+		{	
+			userSession.setHomepagehit(userSession.getHomepagehit()+1);
+			System.out.println("Homepagehits "+userSession.getHomepagehit());
+			System.out.println("SecurityToken "+userSession.getSecurityToken());
+			//homepageMV.addObject("FMSession", userSession);
+			modelAndView=homepageMV;
+			
+		}
+		else
+			modelAndView=loginpageMV;
+		
+		System.out.println("Exit home method");
+		return modelAndView;
+	
+	}
+	
+	@RequestMapping(value="/home.htm" , method= RequestMethod.GET,params="submit=logout")
+	public ModelAndView logout(HttpServletRequest arg0,
+			HttpServletResponse arg1) throws Exception
+	{
+		
+		if (userSession !=null && userSession.isSessionLogin())
+		{
+			userSession.setSessionLogin(false);
+			System.out.println("SecurityToken "+userSession.getSecurityToken());
+			userSession = null;
+			FMSession.destroy(); ////  destroy this
+			arg0.getSession().invalidate();
+		}
+
+			return loginpageMV;
+		
+			
+	}
+	
+	/**
+	 * @param methodNameResolver the methodNameResolver to set
+	 */
+	public void setMethodNameResolver(ParameterMethodNameResolver methodNameResolver) {
+		this.methodNameResolver = methodNameResolver;
+	}
+		
+	
+	@SuppressWarnings("unused")
+	private void makeSecureConnection(HttpServletRequest arg0) throws KeyStoreException, NoSuchAlgorithmException, CertificateException, IOException 
+	{
+		CertificateManager certManager = CertificateManagementFactory.getInstance()
+											.createCertManager(SecurityConstants.X509_CERT_TYPE);
+		
+		//Evenutally parse certificate type from xml or file. create respective manager
+		//and generate corresponding certificate
+		//String host = InetAddress.getLocalHost().getHostName();
+		String domainname = "CN=Ram,OU=Avaya,DC=localhost";
+		int days = 180; String certname="common"; 
+		//String sigalg=SecurityConstants.DSA_ENCRYPT;
+		String sigalg="MD5WithRSA";
+		
+		Certificate selfsignedcert = certManager.generateCertificate(domainname, days, certname, sigalg);
+		
+		KeyStore keyStore = KeyStore.getInstance("JKS");
+		keyStore.load(null, null);
+		
+		keyStore.setKeyEntry("common", MWASKeyPairGenerator.getPrivateKey(),"common".toCharArray(), new Certificate[]{selfsignedcert});
+		
+		System.out.println("Contextpath "+arg0.getContextPath());
+		
+		File file = new File(arg0.getContextPath(), "keystore.test");
+		keyStore.store(new FileOutputStream(file),"password".toCharArray());
+		// take care of Exception
+		
+	}
+
+}

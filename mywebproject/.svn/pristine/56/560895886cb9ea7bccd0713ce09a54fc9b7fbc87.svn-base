@@ -1,0 +1,87 @@
+@CHARSET "ISO-8859-1";
+
+.gallery
+{
+	display: block;
+	padding:40px;
+	
+}
+
+#slides {
+margin: 100px auto 0;
+width: 800px;
+height: 100%;
+}
+
+.slideshow a {
+display: inline-block;
+height: 135px;
+position: relative;
+width: 180px;
+
+/* CSS3 Prevent selections */
+-moz-user-select: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+user-select: none;
+
+}
+
+#slides img {
+border: 8px solid #fff;
+border-bottom: 20px solid #fff;
+cursor: pointer;
+display: block;
+height: 100%;
+left: -400px;
+position: absolute;
+top: 0px;
+width: 100%;
+z-index: 1;
+opacity:0;
+/* CSS3 Box sizing property */
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+-o-box-sizing: border-box;
+box-sizing: border-box;
+
+/* CSS3 transition rules */
+
+-webkit-transition: all linear 1.0s ease;
+-moz-transition: all linear 1.0s ease;
+-o-transition: all linear 1.0s ease;
+transition: all linear 1.0s ease;
+
+ 
+/* CSS3 Box Shadow */
+-moz-box-shadow: 2px 2px 4px #444;
+-webkit-box-shadow: 2px 2px 4px #444;
+-o-box-shadow: 2px 2px 4px #444;
+box-shadow: 2px 2px 4px #444;
+}
+
+#slides img:target
+{
+	left: 0;
+ 	z-index: 9;
+    opacity: 1;	
+	
+}
+
+#slides img:first-child {
+    left: 0;
+}
+
+
+#slider a 
+{
+    text-decoration: none;
+    background: #E3F1FA;
+    border: 1px solid #C6E4F2;
+    padding: 4px 6px;
+    color: #222;
+}
+
+#slider a:hover {
+    background: #C6E4F2;
+}

@@ -1,0 +1,95 @@
+@CHARSET "ISO-8859-1";
+
+#profile
+{
+display: block;
+border:thin solid black;
+width:900px;	
+height:100%;	
+-webkit-border-radius: 10px;
+-moz-border-radius: 5px;
+-webkit-box-shadow: 0px 5px 5px grey;
+-moz-box-shadow: 0px 5px 5px grey;
+}
+
+.profile_1 {
+	display: block;
+	width:100%;
+	/*height:35%;
+	/*border: thin solid black;*/
+	
+	/*padding: 20px;*/
+}
+
+#charts
+{
+	display: block;
+	height:100%;
+	border: thin solid black;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 5px;
+	-webkit-box-shadow: 0px 5px 5px grey;
+	/*padding: 20px;*/
+}
+
+.profile_2
+{
+	display: block;
+	width: 100%;
+	height:65%;
+	/*border: thin solid black;*/
+	/*-webkit-border-radius: 10px;
+	-moz-border-radius: 5px;
+	-webkit-box-shadow: 0px 5px 5px grey;
+	/*padding: 20px;*/
+}
+
+.profile_2 ul
+{
+padding: 0px;
+margin: 0px;
+margin-left: 3px;
+list-style-type: none;	
+}
+
+.profile_2 ul li
+{
+display: inline-block;
+clear: none;
+float: left;
+height: 24px;	
+}
+
+.profile_2 ul li a {
+position: relative;
+margin-top: 16px;
+display: block;
+margin-left: 6px;
+line-height: 24px;
+padding-left: 10px;
+background: #f6f6f6;
+z-index: 9999;
+border: 1px solid #ccc;
+/*border-bottom: 0px;*/
+
+/* The following four lines are to make the top left and top right corners of each tab rounded. */
+-moz-border-radius-topleft: 4px;
+border-top-left-radius: 4px;
+-moz-border-radius-topright: 4px;
+border-top-right-radius: 4px;
+/* end of rounded borders */
+
+width: 130px;
+color: #000000;
+text-decoration: none;
+font-family: fantasy;
+font-size: 15px;
+text-align: center;
+text-shadow: white 1px 1px 1px;;
+font-weight: 300;
+}
+
+.profile_2 ul li a:FOCUS
+{
+	background: #FA2;
+}
