@@ -3,75 +3,82 @@
  */
 package com.mwas.spring.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.datatable.bean.EducationHistory;
-import com.datatable.bean.Profile;
-import com.datatable.bean.SkillSet;
-import com.datatable.bean.WorkHistory;
+import com.mwas.authentication.FMSession;
+import com.mwas.datalayer.dao.FMDao;
+import com.mwas.entities.Education;
+import com.mwas.entities.FutureMaker;
+import com.mwas.entities.Profile;
+import com.mwas.entities.Work;
 
 /**
  * @author asus
  *
  */
 @Controller
-public class ProfileController {
-
-private ModelAndView profileMV;
+@SessionAttributes({"futureMaker"})
+public class ProfileController
 {
-	try
-	{
-		profileMV=new ModelAndView("/profile/profile");
-	}
-	catch(Exception e)
-	{
-	
-	}
-}
 
-@ModelAttribute("aboutMe")
- public Profile getProfileFromDB()
+private final ModelAndView profileMV=new ModelAndView("/profile/profile");
+private FutureMaker futureMaker;
+
+
+ @ModelAttribute("futureMaker")
+ public Profile getProfileFromDB(@ModelAttribute("FMSession") FMSession fmsession)
  {
-	return null;
-	 
-	 
+	FMDao fmDao = new FMDao();
+	//System.out.println("getProfileFromDB");
+	return futureMaker = fmDao.getFutureMaker(fmsession.getFmid());
+  }
+ 
+ @ModelAttribute("aboutMe")
+ public String getAboutMe()
+ {
+	 return futureMaker.getAboutMe();
+ }
+ 
+ @ModelAttribute("ehrray")
+ public List getEducation()
+ {
+	return futureMaker.getEducationHistory();
 	 
  }
-
-@ModelAttribute("skillSet")
-public SkillSet getSkillSetFromDB()
-{
-	return null;
-	
-	
-}
-
-@ModelAttribute("WH")
-public WorkHistory getWHFromDB(){
-	return null;
-	
-}
-
-@ModelAttribute("EHF")
-public EducationHistory getEHFromDB()
-{
-	return null;
-	
-}
-
+ 
+ @ModelAttribute("wharray")
+ public Work[] getWorkHistory()
+ {
+	 return getWorkHistory();
+ }
+ 
 @RequestMapping(value="/profile.htm",method=RequestMethod.GET,params="submit=profile")
 public ModelAndView createProfile(HttpServletRequest arg0,HttpServletResponse arg1)
 {
-	return profileMV;
-	
-	
+	return profileMV;	
 }
 
+@RequestMapping(value="/aboutme.htm", method=RequestMethod.POST,params="submit=save")
+public String setAboutMe(@RequestParam("aboutme")String aboutme,HttpSession session)
+{
+	futureMaker.setAboutMe(aboutme);
+    FMSession fmsession = (FMSession)session.getAttribute("FMSession");
+    
+	FMDao fmDao = new FMDao();
+	fmDao.setFutureMaker(futureMaker);
+	
+	return "redirect:/profile.htm";
+}
 }

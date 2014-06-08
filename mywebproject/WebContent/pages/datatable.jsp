@@ -1,8 +1,8 @@
-<%@page import="com.mwas.authentication.FMSession"%>
+<%@page import="com.space.oauth.handlers.FMSession"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" session="true" %>
 <%@page
-	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.datatable.bean.Person"%>
+	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.entities.Person"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -83,9 +83,9 @@
 					<table class="employeedata" style="table-layout: fixed;">
 							<tbody>
 							<% 
-							    if (request.getSession().getAttribute("Employees")!= null)
+							    if (session.getAttribute("Employees")!= null)
 							    {
-							       ArrayList<?> employees = (ArrayList<?>)request.getSession().getAttribute("Employees");
+							       ArrayList<?> employees = (ArrayList<?>)session.getAttribute("Employees");
 								   for (int i=0;i<employees.size();i++) 
 								   { 
 								     if (employees.get(i) instanceof Person){

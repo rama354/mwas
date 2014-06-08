@@ -6,7 +6,9 @@ package com.mwas.spring.controllers;
 import javax.security.auth.callback.CallbackHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +33,7 @@ public class LoginController {
 	 */
 	private ParameterMethodNameResolver methodNameResolver;
 	
+	@Autowired
 	private AuthorizationService authService;
 	
 	//private FMSession usersession=null;   //Later use a proper UserSession object ( subject,principal )
@@ -45,13 +48,6 @@ public class LoginController {
 		loginpageMV = new ModelAndView("/login/login");
 	}
 	
-	
-	public void setAuthService(AuthorizationService authService){
-		
-		this.authService=authService;
-	}
-	
-	
 	/**
 	 * @param delegate
 	 */
@@ -61,7 +57,7 @@ public class LoginController {
 	}*/
 	@RequestMapping(value="/home.htm" , method= RequestMethod.GET,params="submit=signIn")
 	public ModelAndView signIn(HttpServletRequest arg0,
-			HttpServletResponse arg1) throws Exception 
+			HttpSession session) throws Exception 
 	{
 			// TODO Auto-generated method stub
 			ModelAndView modelAndView = null;
@@ -69,11 +65,12 @@ public class LoginController {
 			String password=arg0.getParameter("password");
 			CallbackHandler cbh= new PageLoginCallBackHandler(user,password);
 			
-			if (authService.authorize(cbh))
+			//if (authService.authorize(cbh))
+			if(authService.authorize(cbh) !=null)
 			{
-				//makeSecureConnection(arg0);
 				userSession = FMSession.getSessionInstance();
-				homepageMV.addObject("FMSession", userSession);
+				//homepageMV.addObject("FMSession", userSession);
+				session.setAttribute("FMSession", userSession);
 				modelAndView = homepageMV;
 			}
 			

@@ -28,7 +28,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
-import com.datatable.bean.Person;
+import com.mwas.entities.Person;
 
 /**
  * Servlet implementation class WorkBookServlet
@@ -150,7 +150,7 @@ public class WorkBookServlet extends HttpServlet
             	InputStream is = item.getInputStream();
             	BufferedInputStream bis = new BufferedInputStream(is);
             	
-            	webAppPath=request.getSession().getServletContext().getRealPath(System.getProperty("file.separator"));
+            	webAppPath=getServletContext().getRealPath(System.getProperty("file.separator"));
             	System.out.println("webAppPath "+webAppPath);
             	System.out.println("contextpath "+request.getContextPath());
             	BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(webAppPath+filename));

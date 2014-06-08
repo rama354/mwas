@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.datatable.bean.Person;
+import com.mwas.entities.Person;
 
 /**
  * @author asus
@@ -117,7 +117,7 @@ public class FileUploadController{
 			    	System.out.println("File field " + name + " with file name "
 			                + item.getName() + " detected.");
 			    	   //stream upload
-			    	datagrid = createDataGrid(stream, arg0,employeeName);
+			    	datagrid = createDataGrid(stream,employeeName);
 			    	
 			    }
 			}
@@ -132,7 +132,7 @@ public class FileUploadController{
 		
 	  }
 			
-	private ArrayList<Person> createDataGrid(InputStream inp,HttpServletRequest arg0,String empname) 
+	private ArrayList<Person> createDataGrid(InputStream inp,String empname) 
 	{
 		workBookRows = new ArrayList<Person>();
 		Workbook wb=null;

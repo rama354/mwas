@@ -17,4 +17,10 @@ public class SecurityToken {
 		return random.nextLong();
 	}
 
+	public static int createUserID(){
+		
+		// TODO Auto-generate method stub
+		Random random = new Random(980246);
+		return random.nextInt();
+	}
 }
