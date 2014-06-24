@@ -41,7 +41,7 @@ public class HomePageController extends AbstractController {
 		String password=arg0.getParameter("password");
 		CallbackHandler cbh= new PageLoginCallBackHandler(user,password);
 		
-		if (authService.authorize(cbh))
+		if (authService.authorize(cbh) != null)
 			modelAndView = new ModelAndView("test");
 		
 		return modelAndView;
