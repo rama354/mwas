@@ -13,9 +13,10 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mwas.entities.FutureMaker;
+import com.mwas.entities.Profile;
 
 /**
- * @author asus
+ * @author kartik
  *
  */
 @Repository("fmDao")
@@ -47,7 +48,7 @@ public class FMDao {
 	        return (FutureMaker)hibernateTemplate.execute(callback);
 	    }
 	    
-	    public void setFutureMaker(FutureMaker entity)
+	    public void setFutureMaker(Profile entity)
 	    {
 	    	hibernateTemplate.saveOrUpdate(entity);
 	    }

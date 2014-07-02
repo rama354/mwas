@@ -22,23 +22,26 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mwas.entities.Person;
+import com.mwas.datalayer.dao.FMDao;
+import com.mwas.entities.Profile;
 
 /**
- * @author asus
+ * @author kartik
  *
  */
 @Controller
 @SessionAttributes("Employees")
 public class FileUploadController{
 
-	//private final int BUFFER_SIZE = 8192;
+	@Autowired
+	private FMDao fmDao;
 	/**
 	 * @return 
 	 * 
@@ -86,7 +89,7 @@ public class FileUploadController{
 	}	
 	*/
 	
-	private ArrayList<Person> workBookRows = null;
+	private ArrayList<Profile> workBookRows = null;
 	
 	@RequestMapping(value = "/datagrid.htm", method = RequestMethod.POST)
 	public ModelAndView fileUpload(HttpServletRequest arg0,
@@ -94,7 +97,7 @@ public class FileUploadController{
 	{
 		// Check that we have a file upload request		
 		boolean isMultipart = ServletFileUpload.isMultipartContent(arg0);
-		ArrayList<Person> datagrid=null;
+		ArrayList<Profile> datagrid=null;
 		String employeeName=null;
 		
 		if (isMultipart)
@@ -132,9 +135,9 @@ public class FileUploadController{
 		
 	  }
 			
-	private ArrayList<Person> createDataGrid(InputStream inp,String empname) 
+	private ArrayList<Profile> createDataGrid(InputStream inp,String empname) 
 	{
-		workBookRows = new ArrayList<Person>();
+		workBookRows = new ArrayList<Profile>();
 		Workbook wb=null;
 		try {
 			wb = WorkbookFactory.create(inp);
@@ -195,12 +198,12 @@ public class FileUploadController{
 		return false;
 	}
 
-	private Person createEntity(Row row) 
+	private Profile createEntity(Row row) 
 	{
 		ConcurrentHashMap<String, Object> attributeMap = new ConcurrentHashMap<String,Object>();
-		Person person = new Person();
+		Profile profile = new Profile();
 		@SuppressWarnings("unchecked")
-		ArrayList<String> attribList = (ArrayList<String>) person.getAttributes();
+		ArrayList<String> attribList = (ArrayList<String>) profile.getAttributes();
 		int len =attribList.size();int i=0;
 		
 		Iterator<Cell> cellIteration = row.cellIterator();
@@ -217,8 +220,9 @@ public class FileUploadController{
 			}
 		}
 		
-		person.setAttributeValues(attributeMap);
-		return person;
+		profile.setAttributeValues(attributeMap);
+		fmDao.setFutureMaker(profile);
+		return profile;
 	}
 
 	@RequestMapping(value = "/image.htm", method = RequestMethod.POST)

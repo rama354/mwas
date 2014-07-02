@@ -14,7 +14,7 @@
     <div id="menu">
 	<ul class="menulist">
 		 <li>
-			   	  <form method="get" action="/mwas/home.htm">
+			   	  <form method="get" action="./home.htm">
 			   	    <button class="menubutton" id="homeicon" title="Home">
 			   	    	<img src="${pageContext.request.contextPath}/images/homealt_green_48.png"/>
 			   	    </button>
@@ -24,7 +24,7 @@
 		</li>
 		<li>
 			<div id="menuitem">
-				<form method="get" action="/mwas/profile.htm" onsubmit="return singleSelect();">
+				<form method="get" action="./profile.htm" onsubmit="return singleSelect();">
 				   <button id="profileicon" title="Profile">
 					 <img src="${pageContext.request.contextPath}/images/customer_male_light_48.png"/>
 					</button>
@@ -34,7 +34,7 @@
 		</li>
 		<li>
 			<div>
-				<form method="get" action="/mwas/gallery.htm" onsubmit="return singleSelect();">
+				<form method="get" action="./gallery.htm" onsubmit="return singleSelect();">
 					<button id="galleryicon" title="Gallery">
 					  <img src="${pageContext.request.contextPath}/images/galleryalt_green_48.png"/>
 					</button>
@@ -43,7 +43,7 @@
 			</div>
 		</li>
 		<li><div>
-				<form method="get" action="/mwas/awards.htm" onsubmit="return singleSelect();">
+				<form method="get" action="./awards.htm" onsubmit="return singleSelect();">
 					<button id="awards" title="Awards">
 					  <img src="${pageContext.request.contextPath}/images/award_48.png"/>
 					</button>
@@ -53,7 +53,7 @@
 		</li>
 		<li>
 			<div>
-				<form method="get" action="/mwas/journal.htm" onsubmit="return singleSelect();">
+				<form method="get" action="./journal.htm" onsubmit="return singleSelect();">
 					<button id="journal" title="Journal">
 					  <img src="${pageContext.request.contextPath}/images/journal1-icon_48.png"/>
 					</button>
@@ -63,7 +63,7 @@
 		</li>
 		<li>
 			<div>
-				<form method="get" action="/mwas/contacts.htm" onsubmit="return singleSelect();">
+				<form method="get" action="./contacts.htm" onsubmit="return singleSelect();">
 					<button id="contacts" title="Contacts">
 					 <img src="${pageContext.request.contextPath}/images/contacts_green_48.png"/>
 					 </button>
@@ -73,7 +73,7 @@
 		</li>
 		<li>
 			<div>
-			   <form method="get" action="/mwas/settings.htm">
+			   <form method="get" action="./settings.htm">
 			    <button id="settings" title="Settings">
 			   		 <img src="${pageContext.request.contextPath}/images/settings_48.png"/>
 				 </button>

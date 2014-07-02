@@ -36,8 +36,7 @@
 	</listener>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>
-     	</param-value>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
 	</context-param>
 	<error-page>
 		<exception-type>java.lang.Throwable</exception-type>
