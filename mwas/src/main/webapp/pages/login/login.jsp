@@ -15,12 +15,12 @@
 </head>
 <body bgcolor="white">
     <div id="sslform">
-    	<form method="post" action="/mywebproject/genssl.htm">
+    	<form method="post" action="./genssl.htm">
     		<button type="submit">SSL</button>
     	</form>  
     </div>
 	<div id="login-box">
-	<form method="get" action="/mywebproject/home.htm">
+	<form method="get" action="./home.htm">
 		<label>Username : </label><input type="text" name="user" /> <label>Password
 			:  </label><input type="password" name="password" />
 		<table style="width: 321px;">

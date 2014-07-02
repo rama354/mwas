@@ -16,7 +16,7 @@
 		</servlet-mapping> -->
 	<servlet>
 	    <servlet-name>loginJSP</servlet-name>
-	    <jsp-file>/pages/login.jsp</jsp-file>
+	    <jsp-file>/pages/login/login.jsp</jsp-file>
 	</servlet>
 	<servlet-mapping>
 	    <servlet-name>loginJSP</servlet-name>

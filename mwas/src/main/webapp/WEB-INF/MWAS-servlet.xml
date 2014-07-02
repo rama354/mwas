@@ -16,9 +16,6 @@
 	<bean id="profileController" class="com.mwas.spring.controllers.ProfileController">
 		<!-- <property name="authService" ref="authService" /> -->
 	</bean>
-	<bean id="sslController" class="com.mwas.spring.controllers.SSLController">
-		<!-- <property name="authService" ref="authService" /> -->
-	</bean>
 	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost/mywebproject"/>

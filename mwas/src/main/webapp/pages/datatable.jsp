@@ -1,8 +1,8 @@
-<%@page import="com.space.oauth.handlers.FMSession"%>
+<?xml version="1.0" encoding="ISO-8859-1" ?>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" session="true" %>
 <%@page
-	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.entities.Person"%>
+	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.authentication.FMSession,com.mwas.entities.Person"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,7 +15,7 @@
 	href="${pageContext.request.contextPath}/themes/tablestyle.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/themes/common/avataar.css" />
-<title>Data Table</title>
+<title>FutureMakers</title>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/scripts/datatable.js"></script>
 </head>
@@ -55,7 +55,7 @@
 			    <tr style="height:10%;">
 				<td style="vertical-align: middle">
 				<div id="uploadgrid">
-						<form method="post" action="/mywebproject/datagrid.htm" onsubmit="return verifyextn( );" enctype="multipart/form-data">
+						<form method="post" action="./datagrid.htm" onsubmit="return verifyextn( );" enctype="multipart/form-data">
 							<label>FutureMaker: </label><input type="text" name="name">
 							<label>File location: </label><input type="file" id="datafile" name="datafile">
 							<button type="submit" value="upload">UpLoad</button>
