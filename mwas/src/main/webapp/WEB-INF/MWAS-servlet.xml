@@ -4,14 +4,20 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-	<context:component-scan base-package="com.space.social" annotation-config="true"/>
+	<context:component-scan base-package="com.mwas.spring" annotation-config="true"/>
 	<bean id="paramResolver"
 		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
 		<property name="paramName" value="submit" />
 	</bean>
-	<bean id="faceBookController" class="com.space.social.controllers.FaceBookController">
+	<bean id="loginController" class="com.mwas.spring.controllers.LoginController">
 		<!-- <property name="authService" ref="authService" /> -->
 		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+	<bean id="profileController" class="com.mwas.spring.controllers.ProfileController">
+		<!-- <property name="authService" ref="authService" /> -->
+	</bean>
+	<bean id="sslController" class="com.mwas.spring.controllers.SSLController">
+		<!-- <property name="authService" ref="authService" /> -->
 	</bean>
 	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
