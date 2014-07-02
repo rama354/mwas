@@ -1,0 +1,5 @@
+package com.mwas.bean;
+
+public class SkillSet {
+
+}

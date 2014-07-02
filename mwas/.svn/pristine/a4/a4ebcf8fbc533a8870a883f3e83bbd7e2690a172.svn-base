@@ -1,0 +1,87 @@
+package com.mwas.bean;
+
+public class FutureMaker {
+	
+	private final int FM_ID;
+	private Education educationHistory;
+	private WorkHistory workHistory;
+	private Profile profile;
+	private SkillSet skillSet;
+	private Groups groups;
+	
+	
+	public FutureMaker(int FM_ID)
+	{
+		this.FM_ID=FM_ID;
+	}
+	/**
+	 * @return the fMID
+	 */
+	public final int getFM_ID() 
+	{
+		return FM_ID;
+	}
+	/**
+	 * @return the educationHistory
+	 */
+	public Education getEducationHistory() {
+		return educationHistory;
+	}
+	/**
+	 * @param educationHistory the educationHistory to set
+	 */
+	public void setEducationHistory(Education educationHistory) {
+		this.educationHistory = educationHistory;
+	}
+	/**
+	 * @return the workHistory
+	 */
+	public WorkHistory getWorkHistory() {
+		return workHistory;
+	}
+	/**
+	 * @param workHistory the workHistory to set
+	 */
+	public void setWorkHistory(WorkHistory workHistory) {
+		this.workHistory = workHistory;
+	}
+	/**
+	 * @return the profile
+	 */
+	public Profile getProfile() {
+		return profile;
+	}
+	/**
+	 * @param profile the profile to set
+	 */
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+	/**
+	 * @return the skillSet
+	 */
+	public SkillSet getSkillSet() {
+		return skillSet;
+	}
+	/**
+	 * @param skillSet the skillSet to set
+	 */
+	public void setSkillSet(SkillSet skillSet) {
+		this.skillSet = skillSet;
+	}
+	/**
+	 * @return the groups
+	 */
+	public Groups getGroups() 
+	{
+		return groups;
+	}
+	/**
+	 * @param groups the groups to set
+	 */
+	public void setGroups(Groups groups) 
+	{
+		this.groups = groups;
+	}
+
+}
