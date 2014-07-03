@@ -7,9 +7,8 @@ import java.sql.SQLException;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.mwas.entities.FutureMaker;
@@ -22,34 +21,28 @@ import com.mwas.entities.Profile;
 @Repository("fmDao")
 public class FMDao {
 		 
-	    private HibernateTemplate hibernateTemplate;
+		@Autowired
+	    private SessionFactory sessionFactory;
 	    
-	    @Autowired
-	    public void setHibernateTemplate(HibernateTemplate
-	                             hibernateTemplate)
-	    {
-	        this.hibernateTemplate = hibernateTemplate;
-	    }
-	 
-	    public HibernateTemplate getHibernateTemplate()
-	    {
-	        return hibernateTemplate;
-	    }
-	
 	    public  FutureMaker getFutureMaker(final int id)
 	    {
-	        HibernateCallback callback = new HibernateCallback() {
-	            public Object doInHibernate(Session session)
-	                throws HibernateException,SQLException 
-	            {
-	                return session.load(FutureMaker.class, id);
-	            }
-	        };
-	        return (FutureMaker)hibernateTemplate.execute(callback);
+	    	sessionFactory.getCurrentSession().get(FutureMaker.class, new Integer(id));
 	    }
 	    
 	    public void setFutureMaker(Profile entity)
 	    {
-	    	hibernateTemplate.saveOrUpdate(entity);
+	    	sessionFactory.getCurrentSession().saveOrUpdate(entity);
+	    }
+	    
+
+	    /*public void setSessionFactory(SessionFactory
+	    									sessionFactory)
+	    {
+	        this.sessionFactory = sessionFactory;
+	    }*/
+	 
+	    public SessionFactory getSessionFactory()
+	    {
+	        return sessionFactory;
 	    }
 }

@@ -20,70 +20,62 @@ public class Profile implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
-	protected String employeeName;
-	protected int hr_ID;
-	protected String designation;
-	protected String division;
+	protected int SPACE_ID;
+	protected String firstName;
+	protected String lasttName;	
+	protected String userName;
+
 	
 	private ArrayList<String> attributeList = null;
 	/**
 	 * @return the employeeName
 	 */
-	public String getEmployeeName() {
-		return employeeName;
+	public String getFirstName() {
+		return firstName;
 	}
 	/**
 	 * @param employeeName the employeeName to set
 	 */
-	public void setEmployeeName(String employeeName) {
-		this.employeeName = employeeName;
-	}
-	/**
-	 * @return the hr_ID
-	 */
-	public int getHr_ID() {
-		return hr_ID;
-	}
-	/**
-	 * @param d the hr_ID to set
-	 */
-	public void setHr_ID(int hr_ID) {
-		this.hr_ID = hr_ID;
-	}
-	/**
-	 * @return the designation
-	 */
-	public String getDesignation() {
-		return designation;
-	}
-	/**
-	 * @param designation the designation to set
-	 */
-	public void setDesignation(String designation) {
-	   if (designation != null)
-			this.designation = designation;
-	   else
-		   this.designation = " ";
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	
-	
 	/**
-	 * @return the division
+	 * @return the sPACE_ID
 	 */
-	public String getDivision() {
-		return division;
+	public synchronized int getSPACE_ID() {
+		return SPACE_ID;
 	}
 	/**
-	 * @param division the division to set
+	 * @param sPACE_ID the sPACE_ID to set
 	 */
-	public void setDivision(String division) 
-	{
-	   if (division !=null)	
-		   this.division = division;
-	   else
-		   this.division = " ";
+	public synchronized void setSPACE_ID(int sPACE_ID) {
+		SPACE_ID = sPACE_ID;
 	}
-	
+	/**
+	 * @return the lasttName
+	 */
+	public synchronized String getLasttName() {
+		return lasttName;
+	}
+	/**
+	 * @param lasttName the lasttName to set
+	 */
+	public synchronized void setLasttName(String lasttName) {
+		this.lasttName = lasttName;
+	}
+	/**
+	 * @return the userName
+	 */
+	public synchronized String getUserName() {
+		return userName;
+	}
+	/**
+	 * @param userName the userName to set
+	 */
+	public synchronized void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public List getAttributes() 
 	{
 		 attributeList = new ArrayList<String>();
