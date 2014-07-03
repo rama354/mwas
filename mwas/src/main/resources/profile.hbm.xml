@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.mwas.entities.Profile" table="Profile">
+        <id name="SPACE_ID" type="long" column="spaceid">
+            <generator class="native"/>
+        </id>
+        <property name="firstName" type="string" column="firstname"/>
+        <property name="lastName" type="string" column="lastname"/>
+        <property name="userName" type="string" column="username"/>      
+    </class>
+</hibernate-mapping>
