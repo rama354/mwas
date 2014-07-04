@@ -4,7 +4,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.mwas.entities.Profile" table="Profile">
-        <id name="SPACE_ID" type="long" column="spaceid">
+        <id name="SPACE_ID" type="long" column="spaceid" access="field">
             <generator class="native"/>
         </id>
         <property name="firstName" type="string" column="firstname"/>

@@ -22,7 +22,7 @@ public class Profile implements Serializable
 	private static final long serialVersionUID = 1L;
 	protected int SPACE_ID;
 	protected String firstName;
-	protected String lasttName;	
+	protected String lastName;	
 	protected String userName;
 
 	
@@ -47,22 +47,16 @@ public class Profile implements Serializable
 		return SPACE_ID;
 	}
 	/**
-	 * @param sPACE_ID the sPACE_ID to set
-	 */
-	public synchronized void setSPACE_ID(int sPACE_ID) {
-		SPACE_ID = sPACE_ID;
-	}
-	/**
 	 * @return the lasttName
 	 */
-	public synchronized String getLasttName() {
-		return lasttName;
+	public synchronized String getLastName() {
+		return lastName;
 	}
 	/**
 	 * @param lasttName the lasttName to set
 	 */
-	public synchronized void setLasttName(String lasttName) {
-		this.lasttName = lasttName;
+	public synchronized void setLastName(String lasttName) {
+		this.lastName = lasttName;
 	}
 	/**
 	 * @return the userName

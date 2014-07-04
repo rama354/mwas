@@ -4,13 +4,14 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
     <class name="com.mwas.entities.LinkedInProfile" table="LinkedInProfile">
-        <id name="LI_ID" type="long" column="liid">
+        <id name="LI_ID" type="long" column="liid" access="field">
             <generator class="native"/>
         </id>
         <property name="name" type="string" column="name"/>
         <property name="summary" type="string" column="summary"/>
         <property name="designation" type="string" column="designation"/>
-        <bag name="educationHistory" cascade="all">
+        </class>
+        <!-- <bag name="educationHistory" cascade="all">
             <key column="liid"/>
             <one-to-many class="com.mwas.entities.Education"/>
         </bag>
@@ -32,9 +33,9 @@
        	    <property name="percentile" type="float"/>
        	    <property name="remarks" type="string"/>
         </class>
-        <class name="come.mwas.entities.Work" table="workhistory">
+        <class name="come.mwas.entities.Work" table="workhistory"> -->
           <!-- <composite-element > </composite-element>-->   
-              <id name="LI_ID" type="long" column="liid">
+          <!--    <id name="LI_ID" type="long" column="liid">
             		<generator class="native"/>
         	  </id>
                <property name="company" type="string"/> 
@@ -42,5 +43,5 @@
                <property name="startDate" type="date"/>
                <property name="endDate" type="date"/>
                <property name="designation" type="string"/> 
-    	</class>
+    	</class> --> 
 </hibernate-mapping>
