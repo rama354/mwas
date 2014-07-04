@@ -221,7 +221,7 @@ public class FileUploadController{
 		}
 		
 		profile.setAttributeValues(attributeMap);
-		fmDao.setFutureMaker(profile);
+		fmDao.setProfile(profile);
 		return profile;
 	}
 

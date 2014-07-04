@@ -15,7 +15,8 @@
 	    <property name="dataSource" ref="myDataSource"/>
 	    <property name="mappingResources">
       	<list>
-        	<value>futuremaker.hbm.xml</value>
+        	<value>linkedinprofile.hbm.xml</value>
+        	<value>profile.hbm.xml</value>
      	</list>
     	</property>
     		<property name="hibernateProperties">
@@ -24,4 +25,5 @@
       	</value>
     </property>
 	</bean>
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 </beans>

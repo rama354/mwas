@@ -3,16 +3,15 @@
  */
 package com.mwas.datalayer.dao;
 
-import java.sql.SQLException;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mwas.entities.FutureMaker;
 import com.mwas.entities.Profile;
+import com.mwas.entities.LinkedInProfile;
+
 
 /**
  * @author kartik
@@ -24,23 +23,26 @@ public class FMDao {
 		@Autowired
 	    private SessionFactory sessionFactory;
 	    
-	    public  FutureMaker getFutureMaker(final int id)
+	    public  LinkedInProfile getLinkedInProfile(final int id)
 	    {
-	    	sessionFactory.getCurrentSession().get(FutureMaker.class, new Integer(id));
+	    	return (LinkedInProfile)sessionFactory.getCurrentSession().get(LinkedInProfile.class, new Integer(id));
 	    }
 	    
-	    public void setFutureMaker(Profile entity)
+	    public  Profile getProfile(final int id)
+	    {
+	    	return (Profile)sessionFactory.getCurrentSession().get(Profile.class, new Integer(id));
+	    }
+	    
+	    public void setLinkedInProfile(LinkedInProfile entity)
 	    {
 	    	sessionFactory.getCurrentSession().saveOrUpdate(entity);
 	    }
 	    
-
-	    /*public void setSessionFactory(SessionFactory
-	    									sessionFactory)
+	    public void setProfile(Profile entity)
 	    {
-	        this.sessionFactory = sessionFactory;
-	    }*/
-	 
+	    	sessionFactory.getCurrentSession().saveOrUpdate(entity);
+	    }
+
 	    public SessionFactory getSessionFactory()
 	    {
 	        return sessionFactory;

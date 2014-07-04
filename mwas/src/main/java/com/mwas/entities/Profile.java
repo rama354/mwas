@@ -96,22 +96,22 @@ public class Profile implements Serializable
 	   while(iterator.hasNext())
 	   {
 		   String attribute = (String)iterator.next();
-		   if (attribute.equalsIgnoreCase("EmployeeName"))
+		   if (attribute.equalsIgnoreCase("FirstName"))
 		   {
 			   parameterTypes = new Class[]{String.class};  
 			   args = new Object[]{new String((String)valueMap.get(attribute))};
 		   }
-		   else if (attribute.equalsIgnoreCase("Hr_ID"))
+		   else if (attribute.equalsIgnoreCase("SPACE_ID"))
 		   {
 			   parameterTypes = new Class[]{int.class};
 			   args = new Object[]{new Integer((Integer)valueMap.get(attribute))};
 		   }
-		   else if (attribute.equalsIgnoreCase("Designation"))
+		   else if (attribute.equalsIgnoreCase("LastName"))
 		   {
 			   parameterTypes = new Class[]{String.class};
 			   args = new Object[]{new String((String)valueMap.get(attribute))};
 		   }
-		   else if (attribute.equalsIgnoreCase("Division"))
+		   else if (attribute.equalsIgnoreCase("UserName"))
 		   {
 			   parameterTypes = new Class[]{String.class};
 			   args = new Object[]{new String((String)valueMap.get(attribute))};

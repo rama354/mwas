@@ -1,9 +1,11 @@
-package main.java.com.mwas.entities;
+package com.mwas.entities;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class LinkedInProfile extends Profile implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private final int LI_ID;
 	private String name;
@@ -31,16 +33,16 @@ public class LinkedInProfile extends Profile implements Serializable {
 	}
 
 
-	public FutureMaker(int FM_ID)
+	public LinkedInProfile(int LI_ID)
 	{
-		this.FM_ID=FM_ID;
+		this.LI_ID=LI_ID;
 	}
 	/**
 	 * @return the fMID
 	 */
-	public final int getFM_ID() 
+	public final int getLI_ID() 
 	{
-		return FM_ID;
+		return LI_ID;
 	}
 	/**
 	 * @return the educationHistory
@@ -69,14 +71,14 @@ public class LinkedInProfile extends Profile implements Serializable {
 	/**
 	 * @return the profile
 	 */
-	public String getAboutMe() {
-		return aboutMe;
+	public String getSummary() {
+		return summary;
 	}
 	/**
 	 * @param profile the profile to set
 	 */
-	public void setAboutMe(String aboutMe) {
-		this.aboutMe = aboutMe;
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 	/**
 	 * @return the skillSet
