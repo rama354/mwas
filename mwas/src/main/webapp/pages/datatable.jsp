@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" session="true" %>
 <%@page
-	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.authentication.FMSession,com.mwas.entities.Person"%>
+	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.authentication.FMSession,com.mwas.entities.Profile"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -88,31 +88,33 @@
 							       ArrayList<?> employees = (ArrayList<?>)session.getAttribute("Employees");
 								   for (int i=0;i<employees.size();i++) 
 								   { 
-								     if (employees.get(i) instanceof Person){
-								     		Person employee = (Person)employees.get(i);
+								     if (employees.get(i) instanceof Profile){
+								     		Profile employee = (Profile)employees.get(i);
 		      				%>
 								<tr>
 								    <td align="center" style="padding: 10px;">
 								      <div class="checkbox">
-								       <input id="check1" type="checkbox" name="profileSelect" value="checked" onchange="selectCount(this.checked);" /></div>
+								       <input id="check1" type="checkbox" name="profileSelect" value="checked" onchange="selectCount(this.checked);" />
+								       </div>
+								    </td>
 									<td align="center" style="padding: 20px;">
 									 <div style="width: 79px;">
-									 <%=employee.getEmployeeName()%>
+									 <%=employee.getFirstName()%>
 									 </div>
 									 </td>
 									<td align="center" style="padding: 20px;">
 									<div style="width: 52px;">
-									<%=employee.getHr_ID()%>
+									<%=employee.getSPACE_ID()%>
 									</div>
 									</td>
 									<td align="center" style="padding: 20px;">
 									<div style="width: 78px;">
-									<%=employee.getDesignation()%>
+									<%=employee.getLastName()%>
 									</div>
 									</td>
 									<td align="center" style="padding: 20px;">
 									<div style="width: 52px;">
-									<%=employee.getDivision()%>
+									<%=employee.getLastName()%>
 									</div>
 									</td>
 									<td align="center" style="padding: 35px;">

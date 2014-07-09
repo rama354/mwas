@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author rramanathan
@@ -73,33 +74,33 @@ public class Profile implements Serializable
 	public List getAttributes() 
 	{
 		 attributeList = new ArrayList<String>();
-		 attributeList.add("EmployeeName");
-		 attributeList.add("Hr_ID");
-		 attributeList.add("Designation");
-		// attributeList.add("Division");
+		 attributeList.add("FirstName");
+		 //attributeList.add("SPACE_ID");
+		 attributeList.add("LastName");
+		 attributeList.add("UserName");
 		
 		 return attributeList;
 	}
 	
 	public void setAttributeValues(Map<String, Object> valueMap)
 	{
-	   Iterator iterator =  attributeList.iterator();
+	   Set<String> iterator =  valueMap.keySet();
 	   Class[] parameterTypes = null;
 	   Object[] args = null;
 	   
-	   while(iterator.hasNext())
+	   for (String attribute: iterator)
 	   {
-		   String attribute = (String)iterator.next();
 		   if (attribute.equalsIgnoreCase("FirstName"))
 		   {
 			   parameterTypes = new Class[]{String.class};  
 			   args = new Object[]{new String((String)valueMap.get(attribute))};
 		   }
+		   /*
 		   else if (attribute.equalsIgnoreCase("SPACE_ID"))
 		   {
 			   parameterTypes = new Class[]{int.class};
 			   args = new Object[]{new Integer((Integer)valueMap.get(attribute))};
-		   }
+		   }*/
 		   else if (attribute.equalsIgnoreCase("LastName"))
 		   {
 			   parameterTypes = new Class[]{String.class};

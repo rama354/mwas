@@ -8,6 +8,7 @@ package com.mwas.datalayer.dao;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mwas.entities.Profile;
 import com.mwas.entities.LinkedInProfile;
@@ -17,7 +18,8 @@ import com.mwas.entities.LinkedInProfile;
  * @author kartik
  *
  */
-@Repository("fmDao")
+@Repository
+@Transactional
 public class FMDao {
 		 
 		@Autowired
@@ -40,11 +42,12 @@ public class FMDao {
 	    
 	    public void setProfile(Profile entity)
 	    {
-	    	sessionFactory.getCurrentSession().saveOrUpdate(entity);
+	    	sessionFactory.getCurrentSession().save(entity);
 	    }
 
 	    public SessionFactory getSessionFactory()
 	    {
 	        return sessionFactory;
 	    }
+	    
 }

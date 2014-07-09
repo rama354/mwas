@@ -213,14 +213,17 @@ public class FileUploadController{
 			Cell cell= (Cell)cellIteration.next();
 			if (cell != null  && i < len)
 			{
-				if (cell.getCellType()== Cell.CELL_TYPE_NUMERIC)
+				/*if (cell.getCellType()== Cell.CELL_TYPE_NUMERIC)
 					attributeMap.put(attribList.get(i++), (int)cell.getNumericCellValue());
-				else if (cell.getCellType()==Cell.CELL_TYPE_STRING)
+				else */
+					if (cell.getCellType()==Cell.CELL_TYPE_STRING)
 					attributeMap.put(attribList.get(i++), cell.getStringCellValue());
 			}
+			else
+				i++;
 		}
 		
-		profile.setAttributeValues(attributeMap);
+		profile.setAttributeValues(attributeMap);	
 		fmDao.setProfile(profile);
 		return profile;
 	}
