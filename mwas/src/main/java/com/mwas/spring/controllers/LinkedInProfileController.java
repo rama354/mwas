@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.mwas.entities.LinkedInProfile;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,12 +37,13 @@ public class LinkedInProfileController
 
 private final ModelAndView profileMV=new ModelAndView("/profile/profile");
 private LinkedInProfile linkedInProfile;
+@Autowired
+private FMDao fmDao;
 
 
  @ModelAttribute("linkedInProfile")
  public LinkedInProfile getProfileFromDB(@ModelAttribute("FMSession") FMSession fmsession)
  {
-	FMDao fmDao = new FMDao();
 	//System.out.println("getProfileFromDB");
 	return linkedInProfile = fmDao.getLinkedInProfile(fmsession.getFmid());
   }
@@ -77,7 +79,6 @@ public String setAboutMe(@RequestParam("aboutme")String summary,HttpSession sess
 	linkedInProfile.setSummary(summary);
     FMSession fmsession = (FMSession)session.getAttribute("FMSession");
     
-	FMDao fmDao = new FMDao();
 	fmDao.setLinkedInProfile(linkedInProfile);
 	
 	return "redirect:/profile.htm";
