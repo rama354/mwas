@@ -7,8 +7,8 @@
         <id name="SPACE_ID" type="long" column="spaceid" access="field">
             <generator class="native"/>
         </id>
-        <property name="firstName" type="string" column="firstname"/>
+        <property name="firstName" type="string" column="firstname" not-null="true"/>
         <property name="lastName" type="string" column="lastname"/>
-        <property name="userName" type="string" column="username"/>      
+        <property name="userName" type="string" column="username" not-null="true"/>      
     </class>
 </hibernate-mapping>

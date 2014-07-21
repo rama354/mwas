@@ -70,10 +70,10 @@
 				  <thead>
 								<tr>
 								    <th style="padding: 5px;"></th>
-									<th align="center" style="padding: 10px;">FutureMaker</th>
+									<th align="center" style="padding: 10px;">FirstName</th>
 									<th align="center" style="padding: 20px;">HRID</th>
-									<th align="center" style="padding: 20px;">Designation</th>
-									<th align="center" style="padding: 20px;">Division</th>
+									<th align="center" style="padding: 20px;">LastName</th>
+									<th align="center" style="padding: 20px;">UserName</th>
 									<th align="center" style="padding-left: 115px;padding-right: 115px;">Profile Picture</th>
 								</tr>
 							</thead>
@@ -114,7 +114,7 @@
 									</td>
 									<td align="center" style="padding: 20px;">
 									<div style="width: 52px;">
-									<%=employee.getLastName()%>
+									<%=employee.getUserName()%>
 									</div>
 									</td>
 									<td align="center" style="padding: 35px;">

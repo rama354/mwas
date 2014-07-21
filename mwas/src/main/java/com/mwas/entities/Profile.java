@@ -21,7 +21,7 @@ public class Profile implements Serializable
 {
 
 	private static final long serialVersionUID = 1L;
-	protected int SPACE_ID;
+	protected long SPACE_ID;
 	protected String firstName;
 	protected String lastName;	
 	protected String userName;
@@ -44,7 +44,7 @@ public class Profile implements Serializable
 	/**
 	 * @return the sPACE_ID
 	 */
-	public synchronized int getSPACE_ID() {
+	public synchronized long getSPACE_ID() {
 		return SPACE_ID;
 	}
 	/**
