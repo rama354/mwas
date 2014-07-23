@@ -10,7 +10,7 @@ import com.mwas.entities.Profile;
  * @author asus
  *
  */
-public interface FMDao {
+public interface ProfileDao {
 
 	public  LinkedInProfile getLinkedInProfile(final int id);
     

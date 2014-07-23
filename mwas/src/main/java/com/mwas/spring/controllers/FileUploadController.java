@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mwas.datalayer.dao.FMDao;
+import com.mwas.datalayer.dao.ProfileDao;
 import com.mwas.entities.Profile;
 
 /**
@@ -41,7 +41,7 @@ import com.mwas.entities.Profile;
 public class FileUploadController{
 
 	@Autowired
-	private FMDao fmDao;
+	private ProfileDao profileDao;
 	/**
 	 * @return 
 	 * 
@@ -224,7 +224,7 @@ public class FileUploadController{
 		}
 		
 		profile.setAttributeValues(attributeMap);	
-		fmDao.setProfile(profile);
+		profileDao.setProfile(profile);
 		return profile;
 	}
 

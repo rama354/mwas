@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolv
 
 import com.mwas.authentication.FMSession;
 import com.mwas.authentication.PageLoginCallBackHandler;
+import com.mwas.datalayer.dao.ProfileDao;
 import com.mwas.spring.beans.authentication.AuthorizationService;
 
 /**
@@ -36,6 +37,8 @@ public class LoginController {
 	@Autowired
 	private AuthorizationService authService;
 	
+	@Autowired
+	private ProfileDao profileDao;
 	//private FMSession usersession=null;   //Later use a proper UserSession object ( subject,principal )
 
 	private FMSession userSession=null;
@@ -71,6 +74,7 @@ public class LoginController {
 				userSession = FMSession.getSessionInstance();
 				//homepageMV.addObject("FMSession", userSession);
 				session.setAttribute("FMSession", userSession);
+				session.setAttribute("Employees", profileDao.getAllProfiles());
 				modelAndView = homepageMV;
 			}
 			

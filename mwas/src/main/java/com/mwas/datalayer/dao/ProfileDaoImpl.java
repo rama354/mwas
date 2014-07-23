@@ -1,10 +1,14 @@
 /**
  * 
  */
-package com.mwas.datalayer.dao;
+package main.java.com.mwas.datalayer.dao;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,7 +24,7 @@ import com.mwas.entities.LinkedInProfile;
  */
 @Repository
 @Transactional
-public class FMDaoImpl implements FMDao {
+public class ProfileDaoImpl implements ProfileDao {
 		 
 		@Autowired
 	    private SessionFactory sessionFactory;
@@ -34,6 +38,18 @@ public class FMDaoImpl implements FMDao {
 	    {
 	    	return (Profile)sessionFactory.getCurrentSession().get(Profile.class, new Integer(id));
 	    }
+	    
+	    public List<Profile> getAllProfiles()
+	    {
+	    	Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Profile.class);
+	    	List<Profile> allProfiles = new ArrayList<Profile>();
+	    	for (Object profile:criteria.list()){
+	    		allProfiles.add((Profile)profile);
+	    	}
+	    	
+	    	return allProfiles;
+	    }
+	    
 	    
 	    public void setLinkedInProfile(LinkedInProfile entity)
 	    {

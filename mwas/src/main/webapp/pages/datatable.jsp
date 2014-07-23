@@ -3,10 +3,11 @@
 	pageEncoding="ISO-8859-1" session="true" %>
 <%@page
 	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.authentication.FMSession,com.mwas.entities.Profile"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang = "en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.min.css"/>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/themes/common/common.css" />
 <link rel="stylesheet" type="text/css"
@@ -55,9 +56,13 @@
 			    <tr style="height:10%;">
 				<td style="vertical-align: middle">
 				<div id="uploadgrid">
-						<form method="post" action="./datagrid.htm" onsubmit="return verifyextn( );" enctype="multipart/form-data">
-							<label>FutureMaker: </label><input type="text" name="name">
-							<label>File location: </label><input type="file" id="datafile" name="datafile">
+						<form class="form-inline" method="post" action="./datagrid.htm" onsubmit="return verifyextn( );" enctype="multipart/form-data">
+							<div class="form-group">
+								<label>FutureMaker: </label><input type="text" name="name" placeholder="Enter UserName">		
+							</div>
+							<div class="form-group">					
+								<label class="sr-only" for="datafile">File location:</label><input type="file" id="datafile" name="datafile">
+							</div>
 							<button type="submit" value="upload">UpLoad</button>
 						</form>
 				</div>
@@ -65,9 +70,9 @@
 			   </tr>
 				<tr style="height:40%;">
 				<td style="vertical-align: top">
-				  <div id="headergrid">
-				  <table id="employeeheader">
-				  <thead>
+				 <!-- <div id="headergrid">
+				    <table id="employeeheader">
+				  			<thead>
 								<tr>
 								    <th style="padding: 5px;"></th>
 									<th align="center" style="padding: 10px;">FirstName</th>
@@ -76,11 +81,22 @@
 									<th align="center" style="padding: 20px;">UserName</th>
 									<th align="center" style="padding-left: 115px;padding-right: 115px;">Profile Picture</th>
 								</tr>
-							</thead>
+						 </thead>
 					</table>
-				  </div>
-				  <div id="datagrid">
-					<table class="employeedata" style="table-layout: fixed;">
+				  </div> -->
+				  <div id="datagrid" class="table-responsive">
+					<!-- <table class="employeedata" style="table-layout: fixed;"> -->
+					   <table class="table table-striped header-fixed">
+					   		<thead>
+								<tr>
+								    <th style="padding: 5px;"></th>
+									<th>FirstName</th>
+									<th>HRID</th>
+									<th>LastName</th>
+									<th>UserName</th>
+									<!-- <th align="center" style="padding-left: 115px;padding-right: 115px;">Profile Picture</th> -->
+								</tr>
+						 	</thead>
 							<tbody>
 							<% 
 							    if (session.getAttribute("Employees")!= null)
@@ -92,40 +108,40 @@
 								     		Profile employee = (Profile)employees.get(i);
 		      				%>
 								<tr>
-								    <td align="center" style="padding: 10px;">
-								      <div class="checkbox">
+								    <td>
+								      <!-- <div class="checkbox"> -->
 								       <input id="check1" type="checkbox" name="profileSelect" value="checked" onchange="selectCount(this.checked);" />
-								       </div>
+								       <!-- </div>-->
 								    </td>
-									<td align="center" style="padding: 20px;">
-									 <div style="width: 79px;">
+									<td>
+									 <!-- <div style="width: 79px;"> -->
 									 <%=employee.getFirstName()%>
-									 </div>
+									 <!-- </div> -->
 									 </td>
-									<td align="center" style="padding: 20px;">
-									<div style="width: 52px;">
+									<td>
+									<!-- <div style="width: 52px;"> -->
 									<%=employee.getSPACE_ID()%>
-									</div>
+									<!-- </div> -->
 									</td>
-									<td align="center" style="padding: 20px;">
-									<div style="width: 78px;">
+									<td>
+									<!-- <div style="width: 78px;"> -->
 									<%=employee.getLastName()%>
-									</div>
+									<!-- </div> -->
 									</td>
-									<td align="center" style="padding: 20px;">
-									<div style="width: 52px;">
+									<td>
+									<!-- <div style="width: 52px;"> -->
 									<%=employee.getUserName()%>
-									</div>
+									<!-- </div> -->
 									</td>
-									<td align="center" style="padding: 35px;">
-										<div id="avataar" style="width: 125px;">
+									<!-- <td>
+										<div id="avataar" style="width: 50px;">
 											<%if (request.getAttribute("image")==null){%>
 											<img src="${pageContext.request.contextPath}/images/empty_profile.gif">
 											<%}else{%>
 											<img src='<%=request.getAttribute("image")%>'>
 											<%}%>
 										</div>
-									</td>
+									</td> -->
 								</tr>
 								<% } } }%>
 							</tbody>

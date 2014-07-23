@@ -2,17 +2,18 @@
 
 #uploadgrid label 
 {
-	font-family: fantasy;
-	font-size: medium;
+	font-size: small;
 }
 
-#uploadgrid form {
-	display: block;
-	/*border: thin groove blue;*/
+/*#uploadgrid form 
+{
+	/*display: block;
 	padding-left: 30px;
-	/*width:  80%;*/
-	margin: 10px;
-}
+	margin: 10px;*/
+	/*border: thin groove blue;*/
+	/*width:  80%;*/	
+/*}*/
+
 
 #uploadgrid button { 
 	background-color: #FA2;
