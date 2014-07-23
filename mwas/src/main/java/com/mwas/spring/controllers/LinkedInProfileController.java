@@ -11,6 +11,8 @@ import javax.servlet.http.HttpSession;
 
 import com.mwas.entities.LinkedInProfile;
 
+import main.java.com.mwas.authentication.SPACESession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -21,7 +23,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mwas.authentication.FMSession;
-import com.mwas.datalayer.dao.FMDao;
 import com.mwas.datalayer.dao.ProfileDao;
 import com.mwas.entities.Education;
 import com.mwas.entities.Profile;
@@ -78,10 +79,17 @@ public ModelAndView createProfile(HttpServletRequest arg0,HttpServletResponse ar
 public String setAboutMe(@RequestParam("aboutme")String summary,HttpSession session)
 {
 	linkedInProfile.setSummary(summary);
-    FMSession fmsession = (FMSession)session.getAttribute("FMSession");
-    
+	SPACESession spaceSession = (SPACESession)session.getAttribute("SPACESession");   
     profileDao.setLinkedInProfile(linkedInProfile);
 	
 	return "redirect:/profile.htm";
+}
+
+@RequestMapping(value="/setSPACEID",method = RequestMethod.POST,consumes="text/plain")
+public String setSPACEID(@RequestParam("spaceid")String spaceid,HttpSession session)
+{
+	SPACESession spaceSession = (SPACESession)session.getAttribute("SPACESession");
+	
+	return "success";
 }
 }

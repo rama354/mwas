@@ -1,9 +1,7 @@
 /**
  * 
  */
-package main.java.com.mwas.datalayer.dao;
-
-
+package com.mwas.datalayer.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +22,7 @@ import com.mwas.entities.LinkedInProfile;
  */
 @Repository
 @Transactional
-public class ProfileDaoImpl implements ProfileDao {
+public class ProfileDaoImpl implements ProfileDao{
 		 
 		@Autowired
 	    private SessionFactory sessionFactory;

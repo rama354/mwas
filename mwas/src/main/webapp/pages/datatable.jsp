@@ -19,6 +19,7 @@
 <title>FutureMakers</title>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/scripts/datatable.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  
 </head>
 <body>
 
@@ -90,11 +91,11 @@
 					   		<thead>
 								<tr>
 								    <th style="padding: 5px;"></th>
-									<th>FirstName</th>
-									<th>HRID</th>
-									<th>LastName</th>
-									<th>UserName</th>
-									<!-- <th align="center" style="padding-left: 115px;padding-right: 115px;">Profile Picture</th> -->
+									<th style="text-align:center">FirstName</th>
+									<th style="text-align:center">HRID</th>
+									<th style="text-align:center">LastName</th>
+									<th style="text-align:center">UserName</th>
+									<th style="text-align:center">Profile Picture</th>
 								</tr>
 						 	</thead>
 							<tbody>
@@ -110,38 +111,38 @@
 								<tr>
 								    <td>
 								      <!-- <div class="checkbox"> -->
-								       <input id="check1" type="checkbox" name="profileSelect" value="checked" onchange="selectCount(this.checked);" />
+								       <input type="checkbox" name="profileSelect" onchange="selectCount(this.checked);" />
 								       <!-- </div>-->
 								    </td>
-									<td>
+									<td align="center">
 									 <!-- <div style="width: 79px;"> -->
 									 <%=employee.getFirstName()%>
 									 <!-- </div> -->
 									 </td>
-									<td>
+									<td align="center">
 									<!-- <div style="width: 52px;"> -->
 									<%=employee.getSPACE_ID()%>
 									<!-- </div> -->
 									</td>
-									<td>
+									<td align="center">
 									<!-- <div style="width: 78px;"> -->
 									<%=employee.getLastName()%>
 									<!-- </div> -->
 									</td>
-									<td>
+									<td align="center">
 									<!-- <div style="width: 52px;"> -->
 									<%=employee.getUserName()%>
 									<!-- </div> -->
 									</td>
-									<!-- <td>
-										<div id="avataar" style="width: 50px;">
+									<td align="center">
+										<div id="avataar">
 											<%if (request.getAttribute("image")==null){%>
-											<img src="${pageContext.request.contextPath}/images/empty_profile.gif">
+											 	<img src="${pageContext.request.contextPath}/images/user.png">
 											<%}else{%>
 											<img src='<%=request.getAttribute("image")%>'>
 											<%}%>
 										</div>
-									</td> -->
+									</td> 
 								</tr>
 								<% } } }%>
 							</tbody>

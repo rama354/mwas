@@ -8,9 +8,6 @@ window.onload=function sessionPopup(){
 };
 
 //onload=sessionPopup;
-
-var numOfProfileSelects=0;
-
 function verifyextn()
 {
 	var fileelement = document.getElementById("datafile");
@@ -40,14 +37,49 @@ function verifyextn()
  
 function selectCount(profileSelected){
 	if (profileSelected)
-		numOfProfileSelects++;
+		
 }
 
  function singleSelect(){
- 	if (numOfProfileSelects > 1){
- 		alert("More than one profile selected");
- 		return false;
- 	}
- 	else
- 		return true;
+ 	
  }
+ 
+$(function()
+{
+	var numOfProfileSelects=0;
+	$("#datagrid").on('change','input[type=checkbox]', function()
+	{
+		var checkbox = $(this);
+		if (checkbox.is(':checked'))
+		{
+			numOfProfileSelects++;
+			if (numOfProfileSelects > 1){
+		 		alert("More than one profile selected");
+		 		return false;
+		 	}
+		 	else
+		 	{
+		 		var $spaceid=checkbox.parent().siblings().eq(1).text();		 		
+		 		$.post('/setSPACEID',{spaceid:$spaceid});
+		 	}
+		 		
+		}
+		else{
+			numOfProfileSelects--;
+			if (numOfProfileSelects > 1){
+		 		alert("More than one profile selected");
+		 		return false;
+		 	}
+		 	else
+		 	{
+		 		var $spaceid=checkbox.parent().siblings().eq(1).text();		 		
+		 		$.post('/setSPACEID',{spaceid:$spaceid});
+		 	}
+			
+		}
+		
+	});
+		
+});
+ 
+ 
