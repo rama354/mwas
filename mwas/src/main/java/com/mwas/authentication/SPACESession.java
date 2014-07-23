@@ -4,6 +4,7 @@
 package main.java.com.mwas.authentication;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
 
 import javax.security.auth.Subject;
 
@@ -13,6 +14,7 @@ import javax.security.auth.Subject;
  */
 public class SPACESession implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 
 	 */
@@ -24,13 +26,16 @@ public class SPACESession implements Serializable {
 	//private Subject subject;
 	private final int spaceSessionID;
 
+	private LinkedHashMap<String, Object> sessionObjects; 
+	
 	private SPACESession() 
 	{
-	  //this.sessionLogin=sessionLogin;
 		securityToken = SecurityToken.createUniqueToken();
 		spaceSessionID=SecurityToken.createUserID();
 		sessionLogin=true;
 		homepagehit=1;
+		
+		sessionObjects= new LinkedHashMap<String, Object>();
 	}
 
 	private void init() 
@@ -43,10 +48,17 @@ public class SPACESession implements Serializable {
 	/**
 	 * @return the fmid
 	 */
-	public final int getFmid() {
+	public final int getSpaceSessionID() {
 		return spaceSessionID;
 	}
 
+	public Object getSessionObject(String key){
+		return sessionObjects.get(key);
+	}
+	
+	public Object setSessionObject(String key,Object value){
+		return sessionObjects.put(key, value);
+	}
 	
 	public static void destroy()
 	{

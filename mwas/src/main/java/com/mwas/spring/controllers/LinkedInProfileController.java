@@ -44,10 +44,10 @@ private ProfileDao profileDao;
 
 
  @ModelAttribute("linkedInProfile")
- public LinkedInProfile getProfileFromDB(@ModelAttribute("FMSession") FMSession fmsession)
+ public LinkedInProfile getProfileFromDB(@ModelAttribute("SPACESession") SPACESession spaceSession)
  {
 	//System.out.println("getProfileFromDB");
-	return linkedInProfile = profileDao.getLinkedInProfile(fmsession.getFmid());
+	return linkedInProfile = profileDao.getLinkedInProfile((Integer)spaceSession.getSessionObject("spaceid"));
   }
  
  @ModelAttribute("aboutMe")
@@ -89,7 +89,7 @@ public String setAboutMe(@RequestParam("aboutme")String summary,HttpSession sess
 public String setSPACEID(@RequestParam("spaceid")String spaceid,HttpSession session)
 {
 	SPACESession spaceSession = (SPACESession)session.getAttribute("SPACESession");
-	
+	spaceSession.setSessionObject("spaceid", Integer.parseInt(spaceid));
 	return "success";
 }
 }

@@ -34,16 +34,7 @@ function verifyextn()
 	}
 	
 }
- 
-function selectCount(profileSelected){
-	if (profileSelected)
-		
-}
 
- function singleSelect(){
- 	
- }
- 
 $(function()
 {
 	var numOfProfileSelects=0;
