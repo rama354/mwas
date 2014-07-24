@@ -9,7 +9,7 @@ import com.mwas.entities.LinkedInProfile;
 import com.mwas.entities.Profile;
 
 /**
- * @author asus
+ * @author kartik
  *
  */
 public interface ProfileDao {

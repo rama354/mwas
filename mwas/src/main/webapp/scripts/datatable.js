@@ -51,7 +51,7 @@ $(function()
 		 	else
 		 	{
 		 		var $spaceid=checkbox.parent().siblings().eq(1).text();		 		
-		 		$.post('/setSPACEID',{spaceid:$spaceid});
+		 		$.post('setSPACEID.htm',{'spaceid':$spaceid});
 		 	}
 		 		
 		}
@@ -64,7 +64,7 @@ $(function()
 		 	else
 		 	{
 		 		var $spaceid=checkbox.parent().siblings().eq(1).text();		 		
-		 		$.post('/setSPACEID',{spaceid:$spaceid});
+		 		$.post('setSPACEID.htm',{'spaceid':$spaceid});
 		 	}
 			
 		}

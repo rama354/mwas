@@ -1,7 +1,7 @@
 /**
  * 
  */
-package main.java.com.mwas.authentication;
+package com.mwas.authentication;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;

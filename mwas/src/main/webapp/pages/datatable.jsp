@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" session="true" %>
 <%@page
-	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.authentication.FMSession,com.mwas.entities.Profile"%>
+	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.authentication.SPACESession,com.mwas.entities.Profile"%>
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -17,9 +17,9 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/themes/common/avataar.css" />
 <title>FutureMakers</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/scripts/datatable.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>  
 </head>
 <body>
 
@@ -27,7 +27,7 @@
 	<!-- use jstl below ????????-->
 	<% if (request.getAttribute("FMSession") != null)
 		{
-			FMSession usersession = (FMSession)request.getAttribute("FMSession");
+			SPACESession usersession = (SPACESession)request.getAttribute("SPACESession");
 			System.out.println("Rama1");
 			if (usersession.getHomepagehit()==1)
 			{
@@ -111,7 +111,7 @@
 								<tr>
 								    <td>
 								      <!-- <div class="checkbox"> -->
-								       <input type="checkbox" name="profileSelect" onchange="selectCount(this.checked);" />
+								       <input type="checkbox" name="profileSelect"/>
 								       <!-- </div>-->
 								    </td>
 									<td align="center">

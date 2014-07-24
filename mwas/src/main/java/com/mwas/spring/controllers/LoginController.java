@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mwas.authentication.SPACESession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver;
 
-import com.mwas.authentication.FMSession;
 import com.mwas.authentication.PageLoginCallBackHandler;
 import com.mwas.datalayer.dao.ProfileDao;
 import com.mwas.spring.beans.authentication.AuthorizationService;
@@ -41,7 +42,7 @@ public class LoginController {
 	private ProfileDao profileDao;
 	//private FMSession usersession=null;   //Later use a proper UserSession object ( subject,principal )
 
-	private FMSession userSession=null;
+	private SPACESession userSession=null;
 	private ModelAndView homepageMV = null;
 	private ModelAndView loginpageMV=null;
 	
@@ -71,9 +72,9 @@ public class LoginController {
 			//if (authService.authorize(cbh))
 			if(authService.authorize(cbh) !=null)
 			{
-				userSession = FMSession.getSessionInstance();
+				userSession = SPACESession.getSessionInstance();
 				//homepageMV.addObject("FMSession", userSession);
-				session.setAttribute("FMSession", userSession);
+				session.setAttribute("SPACESession", userSession);
 				session.setAttribute("Employees", profileDao.getAllProfiles());
 				modelAndView = homepageMV;
 			}
@@ -125,7 +126,7 @@ public class LoginController {
 			userSession.setSessionLogin(false);
 			System.out.println("SecurityToken "+userSession.getSecurityToken());
 			userSession = null;
-			FMSession.destroy(); ////  destroy this
+			SPACESession.destroy(); ////  destroy this
 			arg0.getSession().invalidate();
 		}
 

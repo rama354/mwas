@@ -56,7 +56,7 @@ public class ProfileDaoImpl implements ProfileDao{
 	    
 	    public void setProfile(Profile entity)
 	    {
-	    	sessionFactory.getCurrentSession().save(entity);
+	    	sessionFactory.getCurrentSession().saveOrUpdate(entity);
 	    }
 
 	    public SessionFactory getSessionFactory()
