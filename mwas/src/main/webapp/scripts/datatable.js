@@ -38,15 +38,16 @@ function verifyextn()
 $(function()
 {
 	var numOfProfileSelects=0;
-	$("#datagrid").on('change','input[type=checkbox]', function()
+	$("#datagrid").on('change','input[type=checkbox]', function(event)
 	{
+		event.stopPropagation();
 		var checkbox = $(this);
 		if (checkbox.is(':checked'))
 		{
 			numOfProfileSelects++;
 			if (numOfProfileSelects > 1){
 		 		alert("More than one profile selected");
-		 		return false;
+		 		//return false;
 		 	}
 		 	else
 		 	{
@@ -55,11 +56,15 @@ $(function()
 		 	}
 		 		
 		}
-		else{
+		else
+		{
 			numOfProfileSelects--;
 			if (numOfProfileSelects > 1){
 		 		alert("More than one profile selected");
-		 		return false;
+		 		//return false;
+		 	}
+		 	else if (numOfProfileSelects == 0){
+		 		alert("No profile selected");
 		 	}
 		 	else
 		 	{
