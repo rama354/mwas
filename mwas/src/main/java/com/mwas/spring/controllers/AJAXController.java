@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,12 +23,15 @@ import com.mwas.authentication.SPACESession;
 @Controller
 public class AJAXController 
 {
-
-	@RequestMapping(value="setSPACEID.htm",method = RequestMethod.POST)
+	@Autowired
+	private SPACESession userSession;
+	
+	@RequestMapping(value="/setSPACEID.htm",method = RequestMethod.POST)
 	public @ResponseBody String setSPACEID(@RequestParam("spaceid")String spaceid,HttpServletRequest request)
 	{
-		SPACESession spaceSession = (SPACESession)request.getSession().getAttribute("SPACESession");
-		spaceSession.setSessionObject("spaceid", Integer.parseInt(spaceid.trim()));
+		System.out.println("spaceid"+spaceid.trim());
+		//SPACESession spaceSession = (SPACESession)request.getSession().getAttribute("SPACESession");
+		userSession.setSessionObject("spaceid", Integer.parseInt(spaceid.trim()));
 		return "success";
 	}
 }

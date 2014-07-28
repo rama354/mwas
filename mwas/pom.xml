@@ -93,11 +93,6 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>4.3.5.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>cglib</groupId>
-			<artifactId>cglib-nodep</artifactId>
-			<version>3.1</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<!-- <sourceDirectory>src</sourceDirectory> <outputDirectory>target/classes</outputDirectory> 

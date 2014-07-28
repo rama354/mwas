@@ -3,6 +3,8 @@
  */
 package com.mwas.spring.controllers;
 
+import java.util.List;
+
 import javax.security.auth.callback.CallbackHandler;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +14,7 @@ import com.mwas.authentication.SPACESession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -20,45 +23,34 @@ import org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolv
 
 import com.mwas.authentication.PageLoginCallBackHandler;
 import com.mwas.datalayer.dao.ProfileDao;
+import com.mwas.entities.Profile;
 import com.mwas.spring.beans.authentication.AuthorizationService;
 
 /**
- * @author asus
+ * @author kartik
  *
  */
 @Controller
-@SessionAttributes({"FMSession"})
+@SessionAttributes({"SPACESession","Employees"})
 public class LoginController {
 
-	/**
-	 * 
-	 */
 	private ParameterMethodNameResolver methodNameResolver;
 	
 	@Autowired
 	private AuthorizationService authService;
+
+	@Autowired
+	private SPACESession userSession;
 	
 	@Autowired
 	private ProfileDao profileDao;
 	//private FMSession usersession=null;   //Later use a proper UserSession object ( subject,principal )
-
-	private SPACESession userSession=null;
-	private ModelAndView homepageMV = null;
-	private ModelAndView loginpageMV=null;
+ 
+	//private SPACESession userSession;
+	//private ModelAndView homepageMV = 
+	//private ModelAndView loginpageMV = new ModelAndView("/login/login");
 	
-	public LoginController() 
-	{
-		homepageMV = new ModelAndView("datatable");
-		loginpageMV = new ModelAndView("/login/login");
-	}
 	
-	/**
-	 * @param delegate
-	 */
-	/*public LoginController(Object delegate) {
-		super(delegate);
-		// TODO Auto-generated constructor stub
-	}*/
 	@RequestMapping(value="/home.htm" , method= RequestMethod.GET,params="submit=signIn")
 	public ModelAndView signIn(HttpServletRequest arg0,
 			HttpSession session) throws Exception 
@@ -69,16 +61,20 @@ public class LoginController {
 			String password=arg0.getParameter("password");
 			CallbackHandler cbh= new PageLoginCallBackHandler(user,password);
 			
-			//if (authService.authorize(cbh))
 			if(authService.authorize(cbh) !=null)
 			{
-				userSession = SPACESession.getSessionInstance();
-				//homepageMV.addObject("FMSession", userSession);
-				session.setAttribute("SPACESession", userSession);
-				session.setAttribute("Employees", profileDao.getAllProfiles());
-				modelAndView = homepageMV;
+				modelAndView = new ModelAndView("datatable");
+				userSession.init();
+				modelAndView.addObject("SPACESession", userSession);
+				modelAndView.addObject("Employees", profileDao.getAllProfiles());//adding employees to session can be heavy???
+				//session.setAttribute("SPACESession", userSession);
+				//session.setAttribute("Employees", profileDao.getAllProfiles());
+				//modelAndView = homepageMV;
 			}
-			
+			else
+			{
+				modelAndView = new ModelAndView("/login/login");
+			}
 			return modelAndView;
 		
 	 }
@@ -93,23 +89,27 @@ public class LoginController {
 	
 	/// Put FMSession object in HTTPSession   ????????
 	@RequestMapping(value="/home.htm" , method=RequestMethod.GET,params="submit=home")
-	public ModelAndView home(HttpServletRequest arg0,
-			HttpServletResponse arg1) throws Exception
+	public ModelAndView home(@ModelAttribute("Employees")List<Profile> employees,
+							@ModelAttribute("SPACESession")SPACESession userSession) throws Exception
 	{
 		System.out.println("Enter home method");
 		ModelAndView modelAndView = null;
 		
 		if (userSession !=null && userSession.isSessionLogin())
 		{	
+			modelAndView = new ModelAndView("datatable");
 			userSession.setHomepagehit(userSession.getHomepagehit()+1);
 			System.out.println("Homepagehits "+userSession.getHomepagehit());
 			System.out.println("SecurityToken "+userSession.getSecurityToken());
-			//homepageMV.addObject("FMSession", userSession);
-			modelAndView=homepageMV;
+			modelAndView.addObject("Employees", employees);
+			//modelAndView=homepageMV;
 			
 		}
-		else
-			modelAndView=loginpageMV;
+		else{
+			//modelAndView=loginpageMV;
+			modelAndView = new ModelAndView("/login/login");
+		}
+			
 		
 		System.out.println("Exit home method");
 		return modelAndView;
@@ -117,20 +117,19 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/home.htm" , method= RequestMethod.POST,params="submit=signout")
-	public ModelAndView logout(HttpServletRequest arg0,
-			HttpServletResponse arg1) throws Exception
+	public ModelAndView logout(HttpServletRequest arg0) throws Exception
 	{
 		System.out.println("Logout method");
 		if (userSession !=null && userSession.isSessionLogin())
 		{
-			userSession.setSessionLogin(false);
 			System.out.println("SecurityToken "+userSession.getSecurityToken());
-			userSession = null;
-			SPACESession.destroy(); ////  destroy this
+			userSession.destroy();
+			userSession=null;
+			//SPACESession.destroy(); ////  destroy this
 			arg0.getSession().invalidate();
 		}
 
-		return loginpageMV;
+		return new ModelAndView("/login/login");
 		
 			
 	}

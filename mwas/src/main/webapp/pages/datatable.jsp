@@ -25,9 +25,9 @@
 
 	<!-- <div id="header"> -->
 	<!-- use jstl below ????????-->
-	<% if (request.getAttribute("FMSession") != null)
+	<% if (session.getAttribute("SPACESession") != null)
 		{
-			SPACESession usersession = (SPACESession)request.getAttribute("SPACESession");
+			SPACESession usersession = (SPACESession)session.getAttribute("SPACESession");
 			System.out.println("Rama1");
 			if (usersession.getHomepagehit()==1)
 			{

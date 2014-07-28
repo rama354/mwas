@@ -32,23 +32,24 @@ import com.mwas.entities.Work;
  *
  */
 @Controller
-@SessionAttributes({"futureMaker"})
 public class LinkedInProfileController
 {
 
-private final ModelAndView profileMV=new ModelAndView("/profile/profile");
-private LinkedInProfile linkedInProfile;
+//private final ModelAndView profileMV=new ModelAndView("/profile/profile");
+//private LinkedInProfile linkedInProfile;
 @Autowired
 private ProfileDao profileDao;
-
+@Autowired
+private SPACESession userSession;
 
  @ModelAttribute("linkedInProfile")
- public LinkedInProfile getProfileFromDB(@ModelAttribute("SPACESession") SPACESession spaceSession)
+ public Profile getProfileFromDB(HttpServletRequest request)
  {
-	return linkedInProfile = profileDao.getLinkedInProfile((Integer)spaceSession.getSessionObject("spaceid"));
+	//SPACESession spaceSession=(SPACESession)request.getSession().getAttribute("SPACESession");
+	return profileDao.getProfile((Integer)userSession.getSessionObject("spaceid"));
   }
  
- @ModelAttribute("aboutMe")
+ /*@ModelAttribute("aboutMe")
  public String getSummary()
  {
 	 return linkedInProfile.getSummary();
@@ -66,19 +67,19 @@ private ProfileDao profileDao;
  {
 	 return getWorkHistory();
  }
- 
+ */
 @RequestMapping(value="/profile.htm",method=RequestMethod.GET,params="submit=profile")
 public ModelAndView createProfile(HttpServletRequest arg0,HttpServletResponse arg1)
 {
-	return profileMV;	
+	return new ModelAndView("/profile/profile");
 }
 
 @RequestMapping(value="/aboutme.htm", method=RequestMethod.POST,params="submit=save")
-public String setAboutMe(@RequestParam("aboutme")String summary,HttpSession session)
+public String setAboutMe(@RequestParam("aboutme")String summary)
 {
-	linkedInProfile.setSummary(summary);
-	SPACESession spaceSession = (SPACESession)session.getAttribute("SPACESession");   
-    profileDao.setLinkedInProfile(linkedInProfile);
+	//linkedInProfile.setSummary(summary);
+	//SPACESession spaceSession = (SPACESession)session.getAttribute("SPACESession");   
+    //profileDao.setLinkedInProfile(linkedInProfile);
 	
 	return "redirect:/profile.htm";
 }
