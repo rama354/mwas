@@ -2,7 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" session="true" %>
 <%@page
-	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.authentication.SPACESession,com.mwas.entities.Profile"%>
+	import="org.apache.poi.ss.usermodel.*,java.io.*,java.util.ArrayList,com.mwas.authentication.SPACESessionImpl,com.mwas.entities.Profile"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -25,13 +26,7 @@
 
 	<!-- <div id="header"> -->
 	<!-- use jstl below ????????-->
-	<% if (session.getAttribute("SPACESession") != null)
-		{
-			SPACESession usersession = (SPACESession)session.getAttribute("SPACESession");
-			System.out.println("Rama1");
-			if (usersession.getHomepagehit()==1)
-			{
-	%>
+	<c:if test="${userSession.homepagehit == 1}">
 			<a id="session_popup" href="#usersession"></a>
 			<div id="usersession" class="sessionModal">
 				<div>
@@ -41,7 +36,7 @@
 				<p>You have no new messages.Would you like to edit your profile?</p>
 				</div>
 			</div>
-	<% } } %>
+	</c:if>
 	<table id="table1">
 		<tbody>
 		    <tr>

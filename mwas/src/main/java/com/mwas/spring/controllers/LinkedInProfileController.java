@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.mwas.entities.LinkedInProfile;
 
-import com.mwas.authentication.SPACESession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mwas.authentication.SPACESession;
 import com.mwas.datalayer.dao.ProfileDao;
 import com.mwas.entities.Education;
 import com.mwas.entities.Profile;

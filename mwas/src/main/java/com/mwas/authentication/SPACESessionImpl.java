@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
+import com.mwas.authentication.SPACESession;
+
 /**
  * @author asus
  *
