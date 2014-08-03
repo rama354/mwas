@@ -16,7 +16,7 @@ public interface ProfileDao {
 
 	public  LinkedInProfile getLinkedInProfile(final int id);
     
-    public  Profile getProfile(final int id);
+    public  Profile getProfile(final long id);
     
     public void setLinkedInProfile(LinkedInProfile entity);
         

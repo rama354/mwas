@@ -36,7 +36,15 @@ public class SPACESessionImpl implements SPACESession,Serializable {
 	
 	public SPACESessionImpl() 
 	{
+		securityToken = SecurityToken.createUniqueToken();
+		spaceSessionID=SecurityToken.createUserID();
+		sessionLogin=true;
+		homepagehit=1;		
+		sessionObjects= new LinkedHashMap<String, Object>();
 		
+		System.out.println("Session is logged "+sessionLogin);
+		System.out.println("Homepagehit "+homepagehit);
+		System.out.println("SecurityToken "+securityToken);
 	}
 
 	public void init() 

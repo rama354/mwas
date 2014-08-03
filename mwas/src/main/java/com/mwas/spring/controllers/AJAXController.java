@@ -32,7 +32,7 @@ public class AJAXController
 	{
 		System.out.println("spaceid"+spaceid.trim());
 		//SPACESession spaceSession = (SPACESession)request.getSession().getAttribute("SPACESession");
-		userSession.setSessionObject("spaceid", Integer.parseInt(spaceid.trim()));
+		userSession.setSessionObject("spaceid", Long.parseLong(spaceid.trim()));
 		return "success";
 	}
 }

@@ -46,7 +46,7 @@ private SPACESession userSession;
  public Profile getProfileFromDB(HttpServletRequest request)
  {
 	//SPACESession spaceSession=(SPACESession)request.getSession().getAttribute("SPACESession");
-	return profileDao.getProfile((Integer)userSession.getSessionObject("spaceid"));
+	return profileDao.getProfile((Long)userSession.getSessionObject("spaceid"));
   }
  
  /*@ModelAttribute("aboutMe")

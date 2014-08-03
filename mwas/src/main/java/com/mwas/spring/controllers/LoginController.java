@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mwas.authentication.SPACESession;
+import com.mwas.authentication.SPACESessionImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,18 +40,13 @@ public class LoginController {
 	@Autowired
 	private AuthorizationService authService;
 
-	@Autowired
-	private SPACESession userSession;
+	//@Autowired
+	//private SPACESession userSession;
 	
 	@Autowired
 	private ProfileDao profileDao;
 	//private FMSession usersession=null;   //Later use a proper UserSession object ( subject,principal )
- 
-	//private SPACESession userSession;
-	//private ModelAndView homepageMV = 
-	//private ModelAndView loginpageMV = new ModelAndView("/login/login");
-	
-	
+ 	
 	@RequestMapping(value="/home.htm" , method= RequestMethod.GET,params="submit=signIn")
 	public ModelAndView signIn(HttpServletRequest arg0,
 			HttpSession session) throws Exception 
@@ -64,7 +60,7 @@ public class LoginController {
 			if(authService.authorize(cbh) !=null)
 			{
 				modelAndView = new ModelAndView("datatable");
-				userSession.init();
+				SPACESession userSession = new SPACESessionImpl();
 				modelAndView.addObject("SPACESession", userSession);
 				modelAndView.addObject("Employees", profileDao.getAllProfiles());//adding employees to session can be heavy???
 				//session.setAttribute("SPACESession", userSession);
@@ -117,7 +113,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/home.htm" , method= RequestMethod.POST,params="submit=signout")
-	public ModelAndView logout(HttpServletRequest arg0) throws Exception
+	public ModelAndView logout(@ModelAttribute("SPACESession")SPACESession userSession
+													,HttpServletRequest arg0) throws Exception
 	{
 		System.out.println("Logout method");
 		if (userSession !=null && userSession.isSessionLogin())

@@ -32,9 +32,9 @@ public class ProfileDaoImpl implements ProfileDao{
 	    	return (LinkedInProfile)sessionFactory.getCurrentSession().get(LinkedInProfile.class, new Integer(id));
 	    }
 	    
-	    public  Profile getProfile(final int id)
+	    public  Profile getProfile(final long id)
 	    {
-	    	return (Profile)sessionFactory.getCurrentSession().get(Profile.class, new Integer(id));
+	    	return (Profile)sessionFactory.getCurrentSession().get(Profile.class, new Long(id));
 	    }
 	    
 	    public List<Profile> getAllProfiles()
