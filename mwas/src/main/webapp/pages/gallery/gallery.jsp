@@ -7,8 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>FM Gallery</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/common/common.css"></link>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstrap/css/boostrap.min.css"></link>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/themes/gallery/gallery.css"></link>
-<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/gallery.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/boostrap.min.js"></script>
+<!--<script type="text/javascript" src="${pageContext.request.contextPath}/scripts/gallery.js"></script> -->
 </head>
 <body>
 	<!-- <div class="gallery"> -->
@@ -20,32 +22,32 @@
 							<td>
 							<div id="slides">
 							 <div>
-							   <a tabindex="1" href="#image1" onclick="expandImage(this);">
+							   <a tabindex="1" href="#image1" class="thumbnail">
 								<img id="image1" src="${pageContext.request.contextPath}/images/tiger.jpg"/>
 							   </a>	
 							 </div>
 							  <div>
-							   <a tabindex="2" href="#image2">
+							   <a tabindex="2" href="#image2" class="thumbnail">
 								<img id="image2" src="${pageContext.request.contextPath}/images/petronas.jpg"/>
 							   </a>
 							  </div>
 							  <div>
-							   <a tabindex="3" href="#image3">	
+							   <a tabindex="3" href="#image3" class="thumbnail">	
 							   	<img id="image3" src="${pageContext.request.contextPath}/images/phuket.jpg"/>
 							   </a>
 							   </div>
 							   <div>	
-							   <a tabindex="4" href="#image4">	
+							   <a tabindex="4" href="#image4" class="thumbnail">	
 								<img id="image4" src="${pageContext.request.contextPath}/images/nethra.jpg"/>						
 								</a>
 								</div>
 								<div>
-								<a tabindex="5" href="#image5">	
+								<a tabindex="5" href="#image5" class="thumbnail">	
 								 <img id="image5" src="${pageContext.request.contextPath}/images/himalaya.jpg"/>
 								</a>
 								</div>
 								<div>
-								<a tabindex="6" href="#image6">
+								<a tabindex="6" href="#image6" class="thumbnail">
 									<img id="image6" src="${pageContext.request.contextPath}/images/louvre.jpg"/>
 								</a>
 								</div>

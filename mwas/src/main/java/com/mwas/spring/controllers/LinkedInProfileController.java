@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import com.mwas.entities.LinkedInProfile;
 
 
+import com.mwas.social.config.LinkedInConfig;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,12 +37,12 @@ import com.mwas.entities.Work;
 public class LinkedInProfileController
 {
 
-//private final ModelAndView profileMV=new ModelAndView("/profile/profile");
-//private LinkedInProfile linkedInProfile;
 @Autowired
 private ProfileDao profileDao;
 @Autowired
 private SPACESession userSession;
+@Autowired
+private LinkedInConfig linkedInConfig;
 
  @ModelAttribute("linkedInProfile")
  public Profile getProfileFromDB(HttpServletRequest request)
@@ -71,6 +73,7 @@ private SPACESession userSession;
 @RequestMapping(value="/profile.htm",method=RequestMethod.GET,params="submit=profile")
 public ModelAndView createProfile(HttpServletRequest arg0,HttpServletResponse arg1)
 {
+	//linkedInConfig.connectController().
 	return new ModelAndView("/profile/profile");
 }
 

@@ -66,20 +66,6 @@
 			   </tr>
 				<tr style="height:40%;">
 				<td style="vertical-align: top">
-				 <!-- <div id="headergrid">
-				    <table id="employeeheader">
-				  			<thead>
-								<tr>
-								    <th style="padding: 5px;"></th>
-									<th align="center" style="padding: 10px;">FirstName</th>
-									<th align="center" style="padding: 20px;">HRID</th>
-									<th align="center" style="padding: 20px;">LastName</th>
-									<th align="center" style="padding: 20px;">UserName</th>
-									<th align="center" style="padding-left: 115px;padding-right: 115px;">Profile Picture</th>
-								</tr>
-						 </thead>
-					</table>
-				  </div> -->
 				  <div id="datagrid" class="table-responsive">
 					<!-- <table class="employeedata" style="table-layout: fixed;"> -->
 					   <table class="table table-striped header-fixed">

@@ -24,7 +24,7 @@
 		</li>
 		<li>
 			<div id="menuitem">
-				<form method="get" action="./profile.htm">
+				<form action="<c:url value="/signin/linkedin"/>" method="post">
 				   <button id="profileicon" title="Profile">
 					 <img src="${pageContext.request.contextPath}/images/customer_male_light_48.png"/>
 					</button>
