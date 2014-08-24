@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.encrypt.Encryptors;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.connect.ConnectionFactoryLocator;
@@ -61,8 +63,8 @@ public class LinkedInConfig implements InitializingBean {
 	  @Bean
 	  @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
 	  public ConnectionRepository connectionRepository() {
-	    String userid="ram";
-	    return usersConnectionRepository().createConnectionRepository(userid);
+		User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	    return usersConnectionRepository().createConnectionRepository(principal.getUsername());
 	  }
 
 	  /**
