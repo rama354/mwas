@@ -1,8 +1,0 @@
-@CHARSET "ISO-8859-1";
-
-#gallery
-{
-	display: block;
-	padding:40px;
-	
-}
